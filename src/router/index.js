@@ -10,12 +10,18 @@ import Search from '../pages/Search/Search.vue'
 import Order from '../pages/Order/Order.vue'
 import Profile from '../pages/Profile/Profile.vue'
 import login from '../pages/login/login.vue'
+import app1 from '../pages/app1/app1.vue'
+import HomeContainer from '../components1/tabbar/HomeContainer.vue'
 //声明使用插件
  Vue.use(VueRouter)
 
 export default new VueRouter({
     // 所有路由
     routes:[
+        {
+            path:"/home",
+            component:app1
+        },
         {
             path:"/msite",
             component:Msite,
@@ -46,7 +52,7 @@ export default new VueRouter({
         },
         {
             path:"/",
-            redirect:"./msite",
+            redirect:"./home",
              meta:{
                 showFooter:true
             }
