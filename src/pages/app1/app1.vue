@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.css'
 
 import HomeContainer from '../../components1/tabbar/HomeContainer'
  export default{
