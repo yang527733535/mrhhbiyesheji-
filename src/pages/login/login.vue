@@ -1,5 +1,6 @@
 <template>
-<div>
+  
+  <div>
      <section class="loginContainer">
       <div class="loginInner">
         <div class="login_header">
@@ -10,7 +11,7 @@
           </div>
         </div>
         <div class="login_content">
-          <form>
+          <form @submit.prevent="login">
             <div :class="{on:loginway}">
               <section class="login_message">
                 <input type="tel" maxlength="11"  v-model="phone" placeholder="手机号">
@@ -20,7 +21,7 @@
                   </button>
               </section>
               <section class="login_verification">
-                <input type="tel" maxlength="8" placeholder="验证码">
+                <input  v-model="code" type="tel" maxlength="8" placeholder="验证码">
               </section>
               <section class="login_hint">
                 温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
@@ -30,7 +31,7 @@
             <div :class="{on:!loginway}" >
               <section>
                 <section class="login_message">
-                  <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名">
+                  <input  v-model="name" type="text" maxlength="11" placeholder="手机/邮箱/用户名">
                 </section>
                 <section class="login_verification">
                   <input type="text" maxlength="8" v-model="pwd" placeholder="密码" v-if="showPwd" >
@@ -42,7 +43,7 @@
                   </div>
                 </section>
                 <section class="login_message">
-                  <input type="text" maxlength="11" placeholder="验证码">
+                  <input type="text" v-model="captcha" maxlength="11" placeholder="验证码">
                   <img class="get_verification" src="./images/captcha.svg" alt="captcha">
                 </section>
               </section>
@@ -55,12 +56,17 @@
           <i class="iconfont icon-jiantou2"></i>
         </a>
       </div>
+  <AlertTip  @closeTip='closeTip' v-if="alertshow" :alertText ='alertText'></AlertTip>
     </section>
 </div>
 </template>
 
 <script>
+import AlertTip from '../../components/AlertTip/AlertTip'
 export default {
+  components:{
+    AlertTip
+  },
   computed:{
  rightPhone(){
    return  /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/.test(this.phone)
@@ -68,6 +74,12 @@ export default {
 
   },
   methods:{
+
+closeTip(){
+  this.alertshow = false
+  this.alertText = ''
+},
+    //异步获取短信验证码
   getCode(){
     //启动倒计时 
     //如果当前没有计时
@@ -85,15 +97,52 @@ export default {
     }
    
     //发送ajax请求，向指定手机号发送验证码短信
+},
+ //异步登录
+ showAlert(alertText){
+  this.alertshow =true
+  this.alertText = alertText
+ },
+login(){
+      //前台表单验证
+      if(this.loginway){  //为真的话是短信登录 ，不然是密码登录 
+        const { rightPhone , phone, code}  =this
+        if(!this.rightPhone){
+            //提示请输入正确的手机号码✔️
+          this.showAlert('请输入正确的手机号码✔️')
+        }else if(!/^\d{6}$/.test(code)){
+            //提示验证码错误
+             this.showAlert('请输入正确的验证码✔️')
+        }
+      }else{
+        const { name , pwd , captcha} = this
+        if(!this.name){
+            //提示请输入正确的用户名✔️
+                this.showAlert('请输入正确的用户名')
+        }else if(!this.pwd){
+           //提示请输入正确的密码✔️
+               this.showAlert('请输入正确的密码✔️')
+        }else if(!this.captcha){
+            //提示请输入正确的验证码✔️
+                this.showAlert('请输入正确的验证码✔️')
+        }
+      }
+
 }
   },
   data(){
     return {
+      name:"", //用户名
+      captcha:"", //图形验证码
+      code:"", //短讯验证码
       pwd:"",
       loginway: true, //true代表的是短信登录 false代表的是密码登录
       phone:"",
       showPwd:false, //是否显示密码
       computeTime: 0 , //计时的时间
+      alertText:"" , //提示文本
+      alertshow:false  //是否显示提示框
+      
   }
   
 }
@@ -104,7 +153,7 @@ export default {
 <style lang="stylus" scoped>
      .loginContainer
       width 100%
-      height 100%
+      height 180px
       background #fff
       .loginInner
         padding-top 60px
