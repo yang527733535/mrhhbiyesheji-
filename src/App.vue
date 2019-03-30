@@ -13,8 +13,6 @@ export default {  
   mounted(){
     //  this.$store.dispatch('getAddress')
     this.getAddress()
-    // this.getAddress()
-    // this.getCategorys()
     this.getCategorys()
     this.getShops()
  },

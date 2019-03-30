@@ -5,16 +5,19 @@
         <div class="login_header">
           <h2 class="login_logo">👻小辉外卖</h2>
           <div class="login_header_title">
-            <a href="javascript:;" class="on">短信登录</a>
-            <a href="javascript:;">密码登录</a>
+            <a href="javascript:;" @click="loginway=true" :class="{on:loginway}" >短信登录</a>
+            <a href="javascript:;" @click="loginway=false" :class="{on:!loginway}" >密码登录</a>
           </div>
         </div>
         <div class="login_content">
           <form>
-            <div class="on">
+            <div :class="{on:loginway}">
               <section class="login_message">
-                <input type="tel" maxlength="11" placeholder="手机号">
-                <button disabled="disabled" class="get_verification">获取验证码</button>
+                <input type="tel" maxlength="11"  v-model="phone" placeholder="手机号">
+                <button @click.prevent="getCode" :disabled="!rightPhone" class="get_verification" :class="{right_phone: rightPhone}" >
+                 <!-- {{computeTime>0 ? `已发送(${computeTime}s)` : '获取验证码'}}  -->
+                 {{computeTime>0 ? `已发送(${computeTime}s)` : '获取验证码'}}
+                  </button>
               </section>
               <section class="login_verification">
                 <input type="tel" maxlength="8" placeholder="验证码">
@@ -24,16 +27,18 @@
                 <a href="javascript:;">《用户服务协议》</a>
               </section>
             </div>
-            <div>
+            <div :class="{on:!loginway}" >
               <section>
                 <section class="login_message">
                   <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名">
                 </section>
                 <section class="login_verification">
-                  <input type="tel" maxlength="8" placeholder="密码">
-                  <div class="switch_button off">
-                    <div class="switch_circle"></div>
-                    <span class="switch_text">...</span>
+                  <input type="text" maxlength="8" v-model="pwd" placeholder="密码" v-if="showPwd" >
+                  <input type="password" maxlength="8" v-model="pwd" placeholder="密码" v-else>
+                  <div @click="showPwd=!showPwd" 
+                    :class="showPwd?'on':'off'"  class="switch_button off">
+                    <div class="switch_circle" :class="{right:showPwd}"></div>
+                    <span class="switch_text">{{showPwd?'abc':"..."}}</span>
                   </div>
                 </section>
                 <section class="login_message">
@@ -56,12 +61,43 @@
 
 <script>
 export default {
-  name:'',
-  data(){
-   return {
+  computed:{
+ rightPhone(){
+   return  /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/.test(this.phone)
+ }
 
-   }
+  },
+  methods:{
+  getCode(){
+    //启动倒计时 
+    //如果当前没有计时
+    if(!this.computeTime){
+  this.computeTime = 30
+   const  interid =setInterval(()=>{
+      this.computeTime--
+      if(this.computeTime<=0){
+        //停止计时
+        clearInterval(interid)
+      }
+      },1000)
+
+
+    }
+   
+    //发送ajax请求，向指定手机号发送验证码短信
+}
+  },
+  data(){
+    return {
+      pwd:"",
+      loginway: true, //true代表的是短信登录 false代表的是密码登录
+      phone:"",
+      showPwd:false, //是否显示密码
+      computeTime: 0 , //计时的时间
   }
+  
+}
+
 }
 </script>
 @import "../../common/stylus/mixins.styl"
@@ -125,6 +161,8 @@ export default {
                   color #ccc
                   font-size 14px
                   background transparent
+                  &.right_phone
+                    color:black
               .login_verification
                 position relative
                 margin-top 16px
@@ -164,6 +202,8 @@ export default {
                     background #fff
                     box-shadow 0 2px 4px 0 rgba(0,0,0,.1)
                     transition transform .3s
+                    &.right
+                       transform translateX(16px)
               .login_hint
                 margin-top 12px
                 color #999
