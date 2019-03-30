@@ -1,18 +1,18 @@
 <template>
-  <div class="app-container" >
+ <div class="app-container" >
 
-       <!-- 顶部header区域 -->
+      <!-- 顶部header区域 -->
         <mt-header fixed title="🐱第一个VUE项目😈">
 <span  v-show="flag" @click="goBack" slot="left">
     <mt-button icon="back">返回</mt-button>
   </span> 
 				</mt-header>
-
       <!-- 中间路由 router-view 区域 -->
-<HomeContainer></HomeContainer>
 
-	    
-
+<transition>
+ <router-view></router-view>
+</transition>
+ <HomeContainer></HomeContainer>
      <!-- 底部 tabber区域 -->
 <nav class="mui-bar mui-bar-tab">
 			<router-link class="mui-tab-item" to="/home">
@@ -24,10 +24,10 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge"></span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">{{$store.getters. getAllcount}}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
-			<router-link class="mui-tab-item" to="/search">
+			<router-link class="mui-tab-item" to="/msite">
 				<span class="mui-icon mui-icon-search"></span>
 				<span class="mui-tab-label">🍗小辉外卖</span>
 			</router-link>

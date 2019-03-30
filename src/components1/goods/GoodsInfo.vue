@@ -72,7 +72,7 @@
 <script>
 
 import swiper from '../subcomponents/swiper.vue'
-import numbox from '../subcomponents/goodsinfo_numberbox.vue'
+import numbox from '../subcomponents/shopcar_numbox'
 export default {
     data(){
         return {
@@ -156,30 +156,33 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-.goodsinfo-container{
-    background-color: #eee;
-    overflow: hidden;
-} 
-  .now_price{
-      color: red;
-      font-size: 16px;
-      font-weight: bold;
-      }
-      .mui-card-footer{
-          display: block;
-          button{
-               margin: 15px 0;
-          }
-      }
-      .ball{
-          width: 15px;
-          height: 15px;
-          border-radius:50%;
-          background-color: red;
-          position: absolute;
-          z-index: 999;
-          top: 400px;
-          left: 146px;
-      }
+<style scoped>
+.goodsinfo-container {
+  background-color: #eee;
+  overflow: hidden;
+}
+
+.now_price {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.mui-card-footer {
+  display: block;
+}
+.mui-card-footer button {
+  margin: 15px 0;
+}
+
+.ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  z-index: 999;
+  top: 400px;
+  left: 146px;
+}
 </style>

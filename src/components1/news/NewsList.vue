@@ -1,5 +1,10 @@
 <template>
     <div>
+         <mt-header  class="he" fixed title="🐱第一个VUE项目😈">
+<span   @click="goBack" slot="left">
+    <mt-button icon="back">返回</mt-button>
+  </span> 
+				</mt-header>
        	<ul class="mui-table-view">
 				<li  v-for="item in newlist" :key="item.id"  class="mui-table-view-cell mui-media">
 					<router-link :to="'/home/newsinfo/'+item.id">
@@ -7,7 +12,7 @@
 						<div class="mui-media-body">
 							 <h1>{{item.title}}</h1>
 							<p class='mui-ellipsis'>
-                             <span>发表时间:{{item.add_time|dataFormat}}</span>
+                             <span>发表时间:{{item.add_time}}</span>
                              <span>点击:{{item.click}}</span>
                             </p>
 						</div>
@@ -16,6 +21,8 @@
 				
 
 			</ul>
+
+            
     </div>
 </template>
 
@@ -31,6 +38,10 @@ import { Toast } from "mint-ui"
   this.getNewsList()
      },
      methods:{
+         	 goBack(){
+				//点击后退
+				this.$router.go(-1)
+		 },
          getNewsList(){ //获取新闻列表
             this.$http.get('http://www.liulongbin.top:3005/api/getnewslist').then(result=>{
                   if(result.body.status=== 0){
@@ -46,10 +57,13 @@ import { Toast } from "mint-ui"
 
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="stylus" scoped>
+.he{
+    margin-bottom 20px
+}
 .mui-table-view{
      li{
+         margin-top 40px
          h1{
              font-size: 14px;
          }

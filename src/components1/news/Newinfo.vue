@@ -1,12 +1,17 @@
 <template>
     <div class="newsinfo-container">
          <!-- 获取ID的手段 -->
+          <mt-header  class="he" fixed title="🐱第一个VUE项目😈">
+<span   @click="goBack" slot="left">
+    <mt-button icon="back">返回</mt-button>
+  </span> 
+				</mt-header>
           <!-- 大标题 -->
         <h3 class="title">{{newinfo.title}}</h3>
         <!-- 小标题 -->
         <p class="subtitle">
 
-             <span> 发表时间:{{newinfo.add_time|dataFormat}}</span> 
+             <span> 发表时间:{{newinfo.add_time}}</span> 
              <span>点击:{{newinfo.click}}</span>
         </p>
         <hr>
@@ -32,6 +37,10 @@ export default {
       this.getNewsInfo()
     },
     methods:{
+         goBack(){
+				//点击后退
+				this.$router.go(-1)
+		 },
         getNewsInfo(){
 
             this.$http.get('http://www.liulongbin.top:3005/api/getnew/'+this.id).then(result=>{
@@ -52,24 +61,32 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+
+<style  scoped>
 .newsinfo-container{
-    padding:0 4px;
-    .title{
+     padding:0 4px;
+}
+
+.title{
       font-size: 16px;
       color: hotpink;
       text-align: center;
       margin: 15px 0;
+      margin-top: 55px
     }
-    .subtitle{
+
+     .subtitle{
    font-size: 13px;
    color: blue;
    display: flex;
    justify-content: space-between
     }
+
     .content{
    font-size: 14px;
    color:grey
     }
-}
+
+
 </style>
+

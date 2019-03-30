@@ -1,6 +1,6 @@
 <template>
     <div>
-         <h3>mnu</h3>
+         <h3>mumber</h3>
     </div>
 </template>
 
@@ -18,6 +18,6 @@
     }
   };
 </script>
-<style lang="scss" scoped>
+<style lang="stylus" scoped>
 
 </style>

@@ -14,7 +14,6 @@
         <nav class="msite_nav" v-if="categorys.length">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-             
               <div :key="index" class="swiper-slide" v-for="(categorys,index) in categorysArr" >
                 <a :key="index"  v-for="(category,index) in categorys" href="javascript:" class="link_to_food">
                   <div class="food_container">
@@ -86,9 +85,19 @@ export default {
    mounted() {
   //  this.$store.dispatch('getCategorys')
   //  console.log(this.categorysArr )
-// console.log(baseImageUrl);
-      //创建一个swiper实例对象，来实现萝卜
-      
+  // console.log(baseImageUrl);
+  //创建一个swiper实例对象，来实现萝卜
+       
+       setTimeout(()=>{
+          new Swiper('.swiper-container',{
+         loop: true, // 循环模式选项
+          
+         pagination: {
+         el: '.swiper-pagination',
+    },
+      })
+       },1000)
+
    },
   data(){
    return {
@@ -99,15 +108,7 @@ export default {
    categorys(value){  //category数组中有数据了，在异步更新界面之前执行
   
    //希望界面更新就立即创建swiper对象
-   this.$nextTick(()=>{ //一旦完成界面更新立即调用 这条语句要写在数据更新之后
-  new Swiper('.swiper-container',{
-         loop: true, // 循环模式选项
-          
-         pagination: {
-         el: '.swiper-pagination',
-    },
-      })
-   })
+  
     }
   }
 

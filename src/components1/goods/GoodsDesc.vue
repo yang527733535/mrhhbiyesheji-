@@ -32,19 +32,20 @@ export default {
 }
 </script>
 
-<style lang="scss" >
-  .goodsdesc-container{
-      padding: 4px;
-      h3{
-          font-size: 16px;
-          color:#226aff;
-          text-align: center;
-          margin:15px 0;
-      }
-      .content{
-          img{
-              width: 100%;
-          }
-      }
-  }
+<style scoped >
+ .goodsdesc-container {
+  padding: 4px;
+}
+.goodsdesc-container h3 {
+  font-size: 16px;
+  color: #226aff;
+  text-align: center;
+  margin: 15px 0;
+}
+.goodsdesc-container .content img {
+  width: 100%;
+}
+img{
+     width: 100%;
+}
 </style>

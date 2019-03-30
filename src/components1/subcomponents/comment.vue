@@ -7,7 +7,7 @@
          <div class="cmt-list">
            <div class="cmt-item" v-for="(item,i) in comments"  :key="i">
                <div class="cmt-tilte">
-                   第{{i+1}}楼&nbsp;&nbsp;用户:{{item.user_name}}&nbsp;&nbsp;发表时间：{{item.add_time|dataFormat}}
+                   第{{i+1}}楼&nbsp;&nbsp;用户:{{item.user_name}}&nbsp;&nbsp;发表时间：{{item.add_time}}
                </div>
                 <div class="cmt-body">
                  {{item.content}}

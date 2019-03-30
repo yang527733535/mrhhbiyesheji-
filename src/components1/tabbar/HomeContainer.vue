@@ -1,11 +1,18 @@
 <template>
     <div>
   <!-- 这是轮播图区域 -->
-  <swiper :isfull="true" :lunbotuList="lunbotuList" ></swiper>
-
+    <div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+        <img class="jy1" src="./jy1.jpeg" alt="">
+    </div>
+    <div class="swiper-slide">slider2</div>
+    <div class="swiper-slide">slider3</div>
+  </div>
+</div>
    <!-- 九宫格到6宫格的改造  -->
      <ul class="mui-table-view mui-grid-view mui-grid-9"  >
-		            <li   class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newslist">
+		            <li @click=""  class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newslist">
 		                     <img src="../images/menu1.png" alt="">
 		                    <div class="mui-media-body">新闻资讯</div></router-link></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photolist">
@@ -30,8 +37,30 @@
 
 <script>
 //  import {Toast} from 'mint-ui'
-import swiper from '../subcomponents/swiper.vue';
+import Swiper from 'swiper'
 import axios from 'axios'
+import 'swiper/dist/css/swiper.css'
+
+var mySwiper = new Swiper ('.swiper-container', {
+    direction: 'vertical', // 垂直切换选项
+    loop: true, // 循环模式选项
+    
+    // 如果需要分页器
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    
+    // 如果需要前进后退按钮
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    
+    // 如果需要滚动条
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })        
 
  export default {
      data(){
@@ -44,30 +73,26 @@ import axios from 'axios'
      
      },
      components:{
-      swiper
+      
      },
      methods:{
-         getLunbotu(){ //获取轮播图数据的方法
-         this.$axios.get('http://www.liulongbin.top:3005/api/getlunbo').then(result=>{
-            //  console.log(result.body);
-            if(result.body.status===0){
-                  console.log(result.body.message);
-               this.lunbotuList = result.body.message;
-            
-            }else{
-                获取失败
-            alert(' 获取失败')
-            }
+       
 
-         })
-
-         }
+         
      }
  }
 
 </script>
 
 <style lang="stylus" scoped>
+.jy1{
+    height 100%
+    width 73%
+}
+ .swiper-container {
+    width: 600px;
+    height: 300px;
+}  
 
  .mui-grid-view.mui-grid-9{
 

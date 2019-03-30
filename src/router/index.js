@@ -1,12 +1,18 @@
 // 路由器对象模块
 import Vue from 'vue'
-
+import Goodsinfo from '../components1/goods/GoodsInfo'
+import GoodsDesc from '../components1/goods/GoodsDesc'
+import Goodcomment from '../components1/goods/Goodscomment'
+import goodslist from '../components1/goods/GoodsList'
+import ShopcarContainer from '../components1/tabbar/ShopcarContainer'
+import photoinfo from '../components1/photos/photoinfo'
 import VueRouter from 'vue-router'
-
-
+import photolist from '../components1/photos/Photolist.vue'
+import MemberContainer from '../components1/tabbar/MemberContainer'
 import Msite from '../pages/Msite/Msite.vue'
-
-import Search from '../pages/Search/Search.vue'
+import NewInfo from '../components1/news/Newinfo.vue'
+import NewsList from '../components1/news/NewsList.vue'
+import SearchContainer from '../components1/tabbar/SearchContainer'
 import Order from '../pages/Order/Order.vue'
 import Profile from '../pages/Profile/Profile.vue'
 import login from '../pages/login/login.vue'
@@ -18,6 +24,46 @@ import HomeContainer from '../components1/tabbar/HomeContainer.vue'
 export default new VueRouter({
     // 所有路由
     routes:[
+        { path:'/shopcar',
+          component:ShopcarContainer 
+        },
+        {
+            path:'/home/goodslist/',
+            component:goodslist
+        },
+        {
+            path:'/home/goodscomment/:id',
+            component:Goodcomment,
+            name:'pinglun'
+        },
+        {
+            path:'/home/goodsinfo/:id',
+            component: Goodsinfo
+        },
+        {path:'/home/goodsdesc/:id',
+        component:GoodsDesc,
+        name:'jieshao'},
+        {
+            path:'/home/photoinfo/:id',
+            component:photoinfo
+        },
+        {
+            path:'/home/photolist',
+            component:photolist
+        },
+        {
+            path:'/home/newsinfo/:id',
+            component:NewInfo
+        },
+        {
+            path:"/member",
+            component:MemberContainer
+        },
+        {
+            path:"/home/newslist",
+            component:NewsList
+        },
+       
         {
             path:"/home",
             component:app1
@@ -31,7 +77,7 @@ export default new VueRouter({
         },
         {
             path:"/search",
-            component:Search,
+            component:SearchContainer,
             meta:{
                 showFooter:true
             }
@@ -50,9 +96,10 @@ export default new VueRouter({
                 showFooter:true
             }
         },
+        
         {
             path:"/",
-            redirect:"./msite",
+            redirect:"./home",
              meta:{
                 showFooter:true
             }

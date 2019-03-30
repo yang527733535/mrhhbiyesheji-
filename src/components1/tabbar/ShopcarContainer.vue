@@ -102,39 +102,34 @@ this.getGoodsList()
 </script>
 
 
-<style lang="scss" scoped>
-.shopcar-container{
-    background-color: #eee;
-    overflow: hidden;
+<style  scoped>
+.shopcar-container {
+  background-color: #eee;
+  overflow: hidden;
 }
-.goods-list{
-    .mui-card-content-inner{
-        display: flex;
-      align-items: center
-    }
-    img{
-        width: 60px;
-        height: 60px;
-    }
-    h1{
-        font-size: 14px;
-    }
-    .info{
-     
-        .price{
-            color: red;
-            font-weight: bold;
-        }
-    }
-   
 
+.goods-list .mui-card-content-inner {
+  display: flex;
+  align-items: center;
 }
-.jiesuan{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    .red{
-        color:red;
-    }
+.goods-list img {
+  width: 60px;
+  height: 60px;
+}
+.goods-list h1 {
+  font-size: 14px;
+}
+.goods-list .info .price {
+  color: red;
+  font-weight: bold;
+}
+
+.jiesuan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.jiesuan .red {
+  color: red;
 }
 </style>

@@ -1,7 +1,11 @@
 <template>
     <div>
+			   <mt-header  class="he" fixed title="🐱第一个VUE项目😈">
+<span   @click="goBack" slot="left">
+    <mt-button icon="back">返回</mt-button>
+  </span> 
+				</mt-header>
      <div id="slider" class="mui-slider ">
-
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll">
 						<a  v-for="(item,index) in cates" :key="index" class="mui-control-item mui-active">
@@ -46,6 +50,9 @@ export default {
 		this.getphotobycateid(0)
 	},
     methods:{
+			goBack(){
+		this.$router.go(-1)
+			},
       getAllCategort(){
 		  //获取所有图片分类
 		  this.$http.get('http://www.liulongbin.top:3005/api/getimgcategory').then(result=>{
@@ -69,46 +76,44 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-.photo-list{
-	
-	  margin: 0;
-	  padding: 10px;
-		list-style: none;
-		padding-bottom: 0;
-	li{ 
-
-.info{
-	 color: white;
-	 text-align: left;
-	 position: absolute;
-	 bottom: 0px;
-	 background-color:rgba(0,0,0,.4);
-	
-		.info-title{
-			font-size: 14px;
-		}
-		.info-body{
-		 font-size: 13px;
-		}
-	}
-        position: relative;
-		text-align: center;
-	    margin-bottom: 10px;
-		background-color: #ccc;
-        box-shadow:  0 0 9px #999;
-		img{
-			widows: 100%;
-			vertical-align: middle;
-		}
-		img[lazy=loading] {
+<style  scoped>
+.mui-slider{
+	margin-top: 40px
+}
+.photo-list {
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+  padding-bottom: 0;
+}
+.photo-list li {
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: #ccc;
+  box-shadow: 0 0 9px #999;
+}
+.photo-list li .info {
+  color: white;
+  text-align: left;
+  position: absolute;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.photo-list li .info .info-title {
+  font-size: 14px;
+}
+.photo-list li .info .info-body {
+  font-size: 13px;
+}
+.photo-list li img {
+  widows: 100%;
+  vertical-align: middle;
+}
+.photo-list li img[lazy=loading] {
   width: 40px;
   height: 300px;
   margin: auto;
 }
-	}
-}
-
 
 </style>
