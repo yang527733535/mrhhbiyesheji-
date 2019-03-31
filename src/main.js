@@ -1,5 +1,5 @@
 // 入口文件
-
+import './Mock/mockServer' //加载mockserver即可
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
