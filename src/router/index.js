@@ -1,4 +1,14 @@
 // 路由器对象模块
+
+
+import Shop from '../pages/shop/Shop'
+import ShopGoods from '../pages/shop/ShopGoods/ShopGoods'
+import ShopInfo from '../pages/shop/ShopInfo/ShopInfo'
+import ShopRating from '../pages/shop/ShopRating/ShopRating'
+
+
+
+
 import Vue from 'vue'
 import Goodsinfo from '../components1/goods/GoodsInfo'
 import GoodsDesc from '../components1/goods/GoodsDesc'
@@ -111,7 +121,29 @@ export default new VueRouter({
                 showFooter:false
             }
         },
-
+        {
+            path:"/shop",
+            component:Shop,
+            children:[
+                {
+                path:"/shop/goods",
+                component:ShopGoods
+                },
+                {
+                path:"/shop/ratings",
+                component:ShopRating
+                 },
+                 {
+                 path:"/shop/info",
+                 component:ShopInfo
+                  },
+                  {
+                      path:"",
+                      redirect:"/shop/goods"
+                  }
+            ]
+        }
+        
     ]
 
 })

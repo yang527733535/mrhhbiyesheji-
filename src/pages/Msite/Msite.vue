@@ -1,14 +1,15 @@
 <template>
      <div class="msite">
         <!--首页头部-->
+
         <header class="header">
-      <HeaderTop :title="address.name"></HeaderTop>   
-       <span class="header_search" slot='left'>
+      <HeaderTop   :title="address.name"></HeaderTop> 
+       <router-link to='/search'  class="header_search" slot='left'>
            <i class="iconfont icon-sousuo"></i>
-       </span>
-       <span class="header_login" slot='right'>
+       </router-link>
+       <router-link  to="" class="header_login" slot='right'>
             <span class="header_login_text">登录|注册</span>
-          </span>
+          </router-link>
         </header>
         <!--首页导航-->
         <nav class="msite_nav" v-if="categorys.length">
@@ -116,9 +117,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
 @import "../../common/stylus/mixins.styl"
-
 .msite  //首页
           width 100%
           .msite_nav

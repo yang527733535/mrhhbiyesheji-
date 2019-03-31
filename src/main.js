@@ -10,7 +10,9 @@ import VueResource from 'vue-resource'
 
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'
+import {Button} from 'mint-ui'
 
+Vue.component(Button.name,Button)  //mt-button标签可以直接用了
 Vue.use(VueResource)
 Vue.use(MintUI)
 new Vue({

@@ -1,7 +1,7 @@
 <template>
  <div class="shop_container">
             <ul class="shop_list">
-              <li :key="index" v-for="(shop,index) in shops" class="shop_li border-1px">
+              <li @click="$router.push('/shop')" :key="index" v-for="(shop,index) in shops" class="shop_li border-1px">
                 <a>
                   <div class="shop_left">
                     <img class="shop_img" src="./images/shop/1.jpg">
