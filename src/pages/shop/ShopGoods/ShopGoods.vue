@@ -21,7 +21,6 @@
       <div class="foods-wrapper">
         <ul ref="foodsUl">
           <li
-            @click="showFood(food)"
             v-for="(good,index) in goods"
             :key="index"
             class="food-list-hook"
@@ -30,6 +29,7 @@
             <ul> 
               <li
                 :key="index"
+                 @click="showFood(food)"
                 v-for="(food,index) in good.foods "
                 class="food-item bottom-border-1px"
               >
@@ -56,6 +56,7 @@
           </li>
         </ul>
       </div>
+       <ShopCart></ShopCart>
     </div>
     <Food ref="food" :food="food"></Food>
   </div>
@@ -66,13 +67,15 @@ import { mapState } from "vuex";
 import BScroll from "better-scroll";
 import CartControl from "../../../components/CartControl/CartControl";
 import Food from "../../../components/Food/Food";
+import ShopCart from '../../../components/ShopCart/Shopcart'
 //列表显示之后创建
 // new BScroll('.menu-wrapper')
 
 export default {
   components: {
     CartControl,
-    Food
+    Food,
+    ShopCart
   },
   computed: {
     ...mapState(["goods"]),
@@ -113,7 +116,7 @@ export default {
       //  设置food
       this.food = food;
       // 显示food组件(父组件调用子组件对象的方法)
-      this.$refs.food.toggleShow;
+      this.$refs.food.toggleShow();
     },
     // 初始化滚动条
     _initScroll() {
