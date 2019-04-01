@@ -1,22 +1,14 @@
 <template>
-<div>
-    shoprating
-
-</div>
-  
+  <div>shoprating</div>
 </template>
 
 <script>
 export default {
-  
-  data(){
-   return {
-
-   }
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

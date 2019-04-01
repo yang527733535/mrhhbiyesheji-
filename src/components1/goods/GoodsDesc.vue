@@ -1,39 +1,41 @@
 <template>
-    <div class="goodsdesc-container">
-        <h3>{{info.title}}</h3>
-         <hr>
-        <div class="content" v-html="info.content"></div>
-    </div>
-
-
+  <div class="goodsdesc-container">
+    <h3>{{info.title}}</h3>
+    <hr>
+    <div class="content" v-html="info.content"></div>
+  </div>
 </template>
 
 <script>
 export default {
-    data(){
-        return {
-             info:{} //图文数据
-        }
-    },
-    created(){
+  data() {
+    return {
+      info: {} //图文数据
+    };
+  },
+  created() {
     this.getGoodsDesc();
-    },
-    methods:{
-        getGoodsDesc(){
-            this.$http.get('http://www.liulongbin.top:3005/api/goods/getdesc/'+this.$route.params.id)
-            .then(data=>{
-                if(data.body.status===0){
-                    console.log(data.body.message[0])
-                    this.info =data.body.message[0]
-                }
-            })
-        }
+  },
+  methods: {
+    getGoodsDesc() {
+      this.$http
+        .get(
+          "http://www.liulongbin.top:3005/api/goods/getdesc/" +
+            this.$route.params.id
+        )
+        .then(data => {
+          if (data.body.status === 0) {
+            console.log(data.body.message[0]);
+            this.info = data.body.message[0];
+          }
+        });
     }
-}
+  }
+};
 </script>
 
 <style scoped >
- .goodsdesc-container {
+.goodsdesc-container {
   padding: 4px;
 }
 .goodsdesc-container h3 {
@@ -45,7 +47,7 @@ export default {
 .goodsdesc-container .content img {
   width: 100%;
 }
-img{
-     width: 100%;
+img {
+  width: 100%;
 }
 </style>
