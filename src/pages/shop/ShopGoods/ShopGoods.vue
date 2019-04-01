@@ -25,9 +25,9 @@
             v-for="(good,index) in goods"
             :key="index"
             class="food-list-hook"
-          >
+          >  
             <h1 class="title">{{good.name}}</h1>
-            <ul>
+            <ul> 
               <li
                 :key="index"
                 v-for="(food,index) in good.foods "

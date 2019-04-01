@@ -1,4 +1,4 @@
-//通过间接更新state的多个方法的对象 发送commit来触发mutations里面的方法
+// 通过间接更新state的多个方法的对象 发送commit来触发mutations里面的方法
 
 import {
   RECEIVE_ADDRESS,
@@ -24,40 +24,38 @@ import {
 } from '../api'
 
 export default {
-  //异步获取地址
-  async getAddress({
+  // 异步获取地址
+  async getAddress ({
     commit,
     state
   }) {
     // 发送异步ajax请求
     const geohash = state.latitude + ',' + state.longitude
     const result = await reqAddress(geohash)
-    //提交一个mutation
+    // 提交一个mutation
     if (result.code === 0) {
       const address = result.data
       commit(RECEIVE_ADDRESS, {
         address
       })
     }
-
   },
-  //异步获取食品分类数组列表
-  async getCategorys({
+  // 异步获取食品分类数组列表
+  async getCategorys ({
     commit
   }) {
     // 发送异步ajax请求
     const result = await reqFoodscategorys()
-    //提交一个mutation
+    // 提交一个mutation
     if (result.code === 0) {
       const categorys = result.data
       commit(RECEIVE_CATEGORYS, {
         categorys
       })
     }
-
   },
-  //异步获取商家列表
-  async getShops({
+  // 异步获取商家列表
+  async getShops ({
     commit,
     state
   }) {
@@ -67,7 +65,7 @@ export default {
       latitude
     } = state
     const result = await reqShops(longitude, latitude)
-    //提交一个mutation
+    // 提交一个mutation
     if (result.code === 0) {
       const shops = result.data
       commit(RECEIVE_SHOPS, {
@@ -75,8 +73,8 @@ export default {
       })
     }
   },
-  //同步记录用户信息
-  recordUser({
+  // 同步记录用户信息
+  recordUser ({
     commit
   }, userInfo) {
     commit(RECEIVE_USER_INFO, {
@@ -84,8 +82,8 @@ export default {
     })
   },
 
-  //异步获取用户信息
-  async getUserInfo({
+  // 异步获取用户信息
+  async getUserInfo ({
     commit
   }) {
     const result = await reqUserInfo()
@@ -97,8 +95,8 @@ export default {
     }
   },
 
-  //异步 登出
-  async logout({
+  // 异步 登出
+  async logout ({
     commit
   }) {
     const result = await reqLogout()
@@ -107,8 +105,8 @@ export default {
     }
   },
 
-  //异步获取商家评价列表
-  async getShopInfo({
+  // 异步获取商家评价列表
+  async getShopInfo ({
     commit
   }) {
     const result = await reqShopInfo()
@@ -120,8 +118,8 @@ export default {
     }
   },
 
-  //异步获取商家评价列表
-  async getShopRatings({
+  // 异步获取商家评价列表
+  async getShopRatings ({
     commit
   }) {
     const result = await reqShopRatings()
@@ -132,8 +130,8 @@ export default {
       })
     }
   },
-  //异步获取商家商品列表
-  async getShopGoods({
+  // 异步获取商家商品列表
+  async getShopGoods ({
     commit
   }, callback) {
     const result = await reqShopGoods()
@@ -142,13 +140,13 @@ export default {
       commit(RECEIVE_GOODS, {
         goods
       })
-      //数据更新了，通知一下组件
+      // 数据更新了，通知一下组件
       callback && callback()
     }
   },
 
-  //同步更新food中的count数量
-  updateFoodCount({
+  // 同步更新food中的count数量
+  updateFoodCount ({
     commit
   }, {
     isAdd,

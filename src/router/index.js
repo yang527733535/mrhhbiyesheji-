@@ -1,13 +1,9 @@
 // 路由器对象模块
 
-
 import Shop from '../pages/shop/Shop'
 import ShopGoods from '../pages/shop/ShopGoods/ShopGoods'
 import ShopInfo from '../pages/shop/ShopInfo/ShopInfo'
 import ShopRating from '../pages/shop/ShopRating/ShopRating'
-
-
-
 
 import Vue from 'vue'
 import Goodsinfo from '../components1/goods/GoodsInfo'
@@ -27,123 +23,124 @@ import Order from '../pages/Order/Order.vue'
 import Profile from '../pages/Profile/Profile.vue'
 import login from '../pages/login/login.vue'
 import app1 from '../pages/app1/app1.vue'
+// eslint-disable-next-line no-unused-vars
 import HomeContainer from '../components1/tabbar/HomeContainer.vue'
-//声明使用插件
- Vue.use(VueRouter)
+// 声明使用插件
+Vue.use(VueRouter)
 
 export default new VueRouter({
-    // 所有路由
-    routes:[
-        { path:'/shopcar',
-          component:ShopcarContainer 
+  // 所有路由
+  routes: [
+    { path: '/shopcar',
+      component: ShopcarContainer
+    },
+    {
+      path: '/home/goodslist/',
+      component: goodslist
+    },
+    {
+      path: '/home/goodscomment/:id',
+      component: Goodcomment,
+      name: 'pinglun'
+    },
+    {
+      path: '/home/goodsinfo/:id',
+      component: Goodsinfo
+    },
+    {path: '/home/goodsdesc/:id',
+      component: GoodsDesc,
+      name: 'jieshao'},
+    {
+      path: '/home/photoinfo/:id',
+      component: photoinfo
+    },
+    {
+      path: '/home/photolist',
+      component: photolist
+    },
+    {
+      path: '/home/newsinfo/:id',
+      component: NewInfo
+    },
+    {
+      path: '/member',
+      component: MemberContainer
+    },
+    {
+      path: '/home/newslist',
+      component: NewsList
+    },
+
+    {
+      path: '/home',
+      component: app1
+    },
+    {
+      path: '/msite',
+      component: Msite,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/search',
+      component: SearchContainer,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/order',
+      component: Order,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/profile',
+      component: Profile,
+      meta: {
+        showFooter: true
+      }
+    },
+
+    {
+      path: '/',
+      redirect: './home',
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/login',
+      component: login,
+      meta: {
+        showFooter: false
+      }
+    },
+    {
+      path: '/shop',
+      component: Shop,
+      children: [
+        {
+          path: '/shop/goods',
+          component: ShopGoods
         },
         {
-            path:'/home/goodslist/',
-            component:goodslist
+          path: '/shop/ratings',
+          component: ShopRating
         },
         {
-            path:'/home/goodscomment/:id',
-            component:Goodcomment,
-            name:'pinglun'
+          path: '/shop/info',
+          component: ShopInfo
         },
         {
-            path:'/home/goodsinfo/:id',
-            component: Goodsinfo
-        },
-        {path:'/home/goodsdesc/:id',
-        component:GoodsDesc,
-        name:'jieshao'},
-        {
-            path:'/home/photoinfo/:id',
-            component:photoinfo
-        },
-        {
-            path:'/home/photolist',
-            component:photolist
-        },
-        {
-            path:'/home/newsinfo/:id',
-            component:NewInfo
-        },
-        {
-            path:"/member",
-            component:MemberContainer
-        },
-        {
-            path:"/home/newslist",
-            component:NewsList
-        },
-       
-        {
-            path:"/home",
-            component:app1
-        },
-        {
-            path:"/msite",
-            component:Msite,
-            meta:{
-                showFooter:true
-            }
-        },
-        {
-            path:"/search",
-            component:SearchContainer,
-            meta:{
-                showFooter:true
-            }
-        },
-        {
-            path:"/order",
-            component:Order,
-            meta:{
-                showFooter:true
-            }
-        },
-        {
-            path:"/profile",
-            component:Profile,
-            meta:{
-                showFooter:true
-            }
-        },
-        
-        {
-            path:"/",
-            redirect:"./home",
-             meta:{
-                showFooter:true
-            }
-        },
-        {
-            path:"/login",
-            component:login,
-            meta:{
-                showFooter:false
-            }
-        },
-        {
-            path:"/shop",
-            component:Shop,
-            children:[
-                {
-                path:"/shop/goods",
-                component:ShopGoods
-                },
-                {
-                path:"/shop/ratings",
-                component:ShopRating
-                 },
-                 {
-                 path:"/shop/info",
-                 component:ShopInfo
-                  },
-                  {
-                      path:"",
-                      redirect:"/shop/goods"
-                  }
-            ]
+          path: '',
+          redirect: '/shop/goods'
         }
-        
-    ]
+      ]
+    }
+
+  ]
 
 })
