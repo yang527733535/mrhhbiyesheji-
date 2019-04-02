@@ -271,7 +271,7 @@ export default {
     transform: translateY(-100%);
 
     &.move-enter-active, &.move-leave-active {
-      transition: transform 0.3s;
+      transition: transform 0.5s;
     }
 
     &.move-enter, &.move-leave-to {

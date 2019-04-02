@@ -1,5 +1,15 @@
 // 路由器对象模块
 
+// import Search from '../pages/Search/Search'
+// import Order from '../pages/Order/Order.vue'
+// import Profile from '../pages/Profile/Profile.vue'
+// import Msite from '../pages/Msite/Msite.vue'
+
+const Msite = () => import('../pages/Msite/Msite.vue')
+const Search = () => import('../pages/Search/Search.vue')
+const Order = () => import('../pages/Order/Order.vue')
+const Profile = () => import('../pages/Profile/Profile.vue')
+
 import Shop from '../pages/shop/Shop'
 import ShopGoods from '../pages/shop/ShopGoods/ShopGoods'
 import ShopInfo from '../pages/shop/ShopInfo/ShopInfo'
@@ -15,12 +25,9 @@ import photoinfo from '../components1/photos/photoinfo'
 import VueRouter from 'vue-router'
 import photolist from '../components1/photos/Photolist.vue'
 import MemberContainer from '../components1/tabbar/MemberContainer'
-import Msite from '../pages/Msite/Msite.vue'
 import NewInfo from '../components1/news/Newinfo.vue'
 import NewsList from '../components1/news/NewsList.vue'
-import SearchContainer from '../components1/tabbar/SearchContainer'
-import Order from '../pages/Order/Order.vue'
-import Profile from '../pages/Profile/Profile.vue'
+
 import login from '../pages/login/login.vue'
 import app1 from '../pages/app1/app1.vue'
 // eslint-disable-next-line no-unused-vars
@@ -84,7 +91,7 @@ export default new VueRouter({
     },
     {
       path: '/search',
-      component: SearchContainer,
+      component: Search,
       meta: {
         showFooter: true
       }
